@@ -1,0 +1,10 @@
+/cmd
+
+_*
+
+*.exe
+*.dll
+*.so
+*.dylib
+
+go.work

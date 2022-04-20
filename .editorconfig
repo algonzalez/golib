@@ -1,0 +1,36 @@
+# see http://editorconfig.org/ for details
+
+# top-most EditorConfig file; stops searching parent directories.
+root = true
+
+# Defaults: UTF-8, Windows-style newline,
+#           4 space indents,
+#           newline ending every file,
+#           trim trailing whitespace
+[*]
+charset = utf-8
+end_of_line = crlf
+indent_size = 4
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[{*.go,go.mod}]
+indent_size = 4
+indent_style = tab
+
+[*.{css,htm,html,js,json,jsx,less,sass,scss,svg,ts,tsx,vue}]
+indent_size = 2
+indent_style = space
+
+# trailing whitespace may be relevant
+[*.{diff,md,markdown}]
+trim_trailing_whitespace = false
+
+# Batch Files
+[*.{cmd,bat}]
+end_of_line = crlf
+
+# Bash Files
+[*.sh]
+end_of_line = lf
