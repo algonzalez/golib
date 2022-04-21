@@ -7,21 +7,21 @@ import (
 	"strings"
 )
 
-// DirExists returns true if the specified path is found and is a directory;
-// otherwise, it returns false
+// DirExists returns true if the directory path was found
+// and is in fact a directory; otherwise, it returns false
 func DirExists(path string) bool {
 	info, err := os.Stat(path)
 	return !errors.Is(err, fs.ErrNotExist) && info.IsDir()
 }
 
-// FileExists returns true if the specified path is found and is a file;
-// otherwise, it returns false
+// FileExists returns true if the file path was found
+// and is in fact a file; otherwise, it returns false
 func FileExists(path string) bool {
 	info, err := os.Stat(path)
 	return !errors.Is(err, fs.ErrNotExist) && !info.IsDir()
 }
 
-// GetFileInfo retuns an fs.FileInfo object for the specified file path; if found.
+// GetFileInfo retuns an fs.FileInfo object for the file path; if found.
 func GetFileInfo(path string) (info fs.FileInfo, exists bool) {
 	info, err := os.Stat(path)
 	return info, !errors.Is(err, fs.ErrNotExist) && !info.IsDir()
