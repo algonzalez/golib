@@ -21,10 +21,32 @@ func FileExists(path string) bool {
 	return !errors.Is(err, fs.ErrNotExist) && !info.IsDir()
 }
 
-// GetFileInfo retuns an fs.FileInfo object for the file path; if found.
-func GetFileInfo(path string) (info fs.FileInfo, exists bool) {
+// GetFileInfo returns an fs.FileInfo representing the file at path.
+// If the file was not found, it will return a custom error.
+// If there is another error, it will be of type *fs.PathError
+func GetFileInfo(path string) (fs.FileInfo, error) {
 	info, err := os.Stat(path)
-	return info, !errors.Is(err, fs.ErrNotExist) && !info.IsDir()
+	if err != nil {
+		return nil, err
+	}
+	if info.IsDir() {
+		return nil, errors.New("requested path is a directory not file")
+	}
+	return info, err
+}
+
+// GetDirInfo returns an fs.FileInfo representing the directory at path.
+// If the file was not found, it will return a custom error.
+// If there is another error, it will be of type *fs.PathError
+func GetDirInfo(path string) (fs.FileInfo, error) {
+	info, err := os.Stat(path)
+	if err != nil {
+		return nil, err
+	}
+	if !info.IsDir() {
+		return nil, errors.New("requested path is not a directory")
+	}
+	return info, err
 }
 
 // IsCaseSensitive determines if the file system is case sensitive or not.
