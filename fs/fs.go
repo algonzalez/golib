@@ -63,7 +63,7 @@ func GetSearchPaths() []string {
 		cwd, _ := os.Getwd()
 		paths = slice.Prepend(paths, cwd)
 
-		return slice.ToDistinct(paths, path.NormalizePath)
+		return slice.Distinct(paths, path.NormalizePath)
 	}
 	return []string{}
 }
